@@ -1,5 +1,6 @@
 package com.pm.billingservice.grpc;
 
+import billing.BillingRequest;
 import billing.BillingResponse;
 import billing.BillingServiceGrpc.BillingServiceImplBase;
 import io.grpc.stub.StreamObserver;
@@ -9,23 +10,24 @@ import org.slf4j.LoggerFactory;
 
 @GrpcService
 public class BillingGrpcService extends BillingServiceImplBase {
-    private static final Logger log = LoggerFactory.getLogger(BillingGrpcService.class);
 
-    //streamObserver คือ รับส่งข้อมูลแบบ realtime ของ grpc
-    @Override
-    public void createBillingAccount(billing.BillingRequest billingRequest ,
-                                     StreamObserver<billing.BillingResponse> responseObserver) {
+  private static final Logger log = LoggerFactory.getLogger(
+      BillingGrpcService.class);
 
-        log.info("createBillingAccount request received {}", billingRequest.toString());
+  @Override
+  public void createBillingAccount(BillingRequest billingRequest,
+      StreamObserver<BillingResponse> responseObserver) {
 
-        // Business logic - e.g save to database, perform calculates etc
+      log.info("createBillingAccount request received {}", billingRequest.toString());
 
-        BillingResponse response = BillingResponse.newBuilder()
-                .setAccountId("1234")
-                .setStatus("ACTIVE")
-                .build();
+      // Business logic - e.g save to database, perform calculates etc
 
-        responseObserver.onNext(response);
-        responseObserver.onCompleted();
-    }
+      BillingResponse response = BillingResponse.newBuilder()
+          .setAccountId("12345")
+          .setStatus("ACTIVE")
+          .build();
+
+      responseObserver.onNext(response);
+      responseObserver.onCompleted();
+  }
 }
