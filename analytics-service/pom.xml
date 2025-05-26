@@ -34,11 +34,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-<<<<<<< Updated upstream
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-=======
 
         <dependency>
             <groupId>org.springframework.kafka</groupId>
@@ -50,7 +45,6 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>4.29.1</version>
->>>>>>> Stashed changes
         </dependency>
 
         <dependency>
@@ -66,8 +60,6 @@
     </dependencies>
 
     <build>
-<<<<<<< Updated upstream
-=======
         <extensions>
             <!-- Ensure OS compatibility for protoc -->
             <extension>
@@ -76,14 +68,11 @@
                 <version>1.7.0</version>
             </extension>
         </extensions>
->>>>>>> Stashed changes
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-<<<<<<< Updated upstream
-=======
 
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
@@ -105,7 +94,6 @@
                     </execution>
                 </executions>
             </plugin>
->>>>>>> Stashed changes
         </plugins>
     </build>
 
