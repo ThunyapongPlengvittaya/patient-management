@@ -5,7 +5,18 @@ spring:
   cloud:
     gateway:
       routes:
-        ## REST CLIENT -> http://localhost:4004/api/patients
+        ## transform http://localhost:4004/auth/login
+        ## to APT GATEWAY url (predicates) -> http://auth-service:4005/login
+        - id: auth-service-route
+          ##internal address of auth service in docker
+          uri: http://auth-service:4005
+          ##path
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+        ## REST CLIENT -> http://localhost:4004/api/patients/**
         ## API GATEWAY -> http://patient-serivice:4000/patients
         ## PATIENT SERVICE (SPRING BOOT APP) -> /patients -> Patients Array
         - id: patient-service-route
@@ -14,7 +25,7 @@ spring:
             - Path=/api/patients/**
           filters:
             - StripPrefix=1
-
+            - JwtValidation
         ## REST-CLIENT -> http://locathost:4004/api-docs/patients
         ## API_GATEWAY -> http://patient-service:4000/v3/api-docs
         - id: api-docs-patient-route
